@@ -13,12 +13,11 @@
     font-family:Arial, sans-serif;
 }
 
-/* BACKGROUND */
 body{
     background:#f5f6f7;
 }
 
-/* HEADER STYLE VINTED */
+/* HEADER */
 header{
     background:white;
     padding:12px 20px;
@@ -28,12 +27,10 @@ header{
     border-bottom:1px solid #e5e5e5;
 }
 
-/* LOGO */
 .logo img{
     height:45px;
 }
 
-/* NAV */
 nav a{
     margin-left:15px;
     text-decoration:none;
@@ -48,7 +45,7 @@ nav a:hover{
 /* HERO */
 .hero{
     text-align:center;
-    padding:60px 20px;
+    padding:70px 20px;
     background:linear-gradient(135deg,#00c06b,#00a85a);
     color:white;
 }
@@ -58,47 +55,11 @@ nav a:hover{
     margin-bottom:10px;
 }
 
-.hero p{
-    opacity:0.9;
-}
-
-/* FILTER BAR */
-.filters{
+/* SECTIONS */
+.section{
     max-width:900px;
-    margin:20px auto;
-    background:white;
-    padding:15px;
-    border-radius:12px;
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    box-shadow:0 4px 12px rgba(0,0,0,0.08);
-}
-
-.filters select,
-.filters input{
-    padding:10px;
-    border:1px solid #ddd;
-    border-radius:8px;
-    outline:none;
-}
-
-/* EMPTY MESSAGE */
-.empty{
-    text-align:center;
-    padding:80px 20px;
-    color:#666;
-}
-
-.empty h2{
-    margin-bottom:10px;
-}
-
-/* CARD CONTAINER */
-.container{
-    max-width:900px;
-    margin:auto;
-    padding:20px;
+    margin:30px auto;
+    padding:0 20px;
 }
 
 .card{
@@ -109,9 +70,19 @@ nav a:hover{
     box-shadow:0 4px 12px rgba(0,0,0,0.06);
 }
 
-.card h3{
+.card h2{
     color:#00c06b;
     margin-bottom:10px;
+}
+
+/* ARTICLES */
+.empty{
+    text-align:center;
+    padding:50px 20px;
+    color:#666;
+    background:white;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.06);
 }
 
 /* FOOTER */
@@ -123,14 +94,11 @@ footer{
     margin-top:30px;
 }
 
-/* RESPONSIVE */
-@media(max-width:600px){
-    .hero h1{
-        font-size:26px;
-    }
+/* SMOOTH NAV */
+html{
+    scroll-behavior:smooth;
 }
 </style>
-
 </head>
 
 <body>
@@ -142,75 +110,51 @@ footer{
     </div>
 
     <nav>
-        <a href="#">Accueil</a>
-        <a href="#">Filtres</a>
-        <a href="#">Contact</a>
+        <a href="#accueil">Accueil</a>
+        <a href="#infos">Infos</a>
+        <a href="#histoire">Histoire</a>
+        <a href="#articles">Articles</a>
     </nav>
 </header>
 
-<!-- HERO -->
-<section class="hero">
-    <h1>Donne une seconde vie aux vêtements</h1>
-    <p>Projet de revente de vêtements d’occasion entre élèves</p>
+<!-- HERO / ACCUEIL -->
+<section class="hero" id="accueil">
+    <h1>CluxXEo Vente</h1>
+    <p>Donner une seconde vie aux vêtements du lycée</p>
 </section>
 
-<!-- FILTRES (PRÊTS POUR PLUS TARD) -->
-<div class="filters">
-
-    <select>
-        <option>Toutes les tailles</option>
-        <option>XS</option>
-        <option>S</option>
-        <option>M</option>
-        <option>L</option>
-        <option>XL</option>
-    </select>
-
-    <input type="number" placeholder="Prix min">
-
-    <input type="number" placeholder="Prix max">
-
-    <select>
-        <option>Tous les types</option>
-        <option>T-shirt</option>
-        <option>Pantalon</option>
-        <option>Pull</option>
-        <option>Chaussures</option>
-    </select>
-
-</div>
-
-<!-- CONTENU -->
-<div class="container">
-
+<!-- INFOS -->
+<section class="section" id="infos">
     <div class="card">
-        <h3>À propos</h3>
+        <h2>📌 Infos du projet</h2>
         <p>
-            Nous sommes Kenzo et Sasha. Nous avons créé ce projet pour donner une seconde vie aux vêtements et les proposer à petit prix.
+            CluxXEo Vente est un projet de revente de vêtements d’occasion récupérés au sein du lycée.  
+            L’objectif est de proposer des vêtements à petits prix et accessibles à tous.
         </p>
     </div>
+</section>
 
+<!-- HISTOIRE -->
+<section class="section" id="histoire">
     <div class="card">
-        <h3>Notre objectif</h3>
+        <h2>📖 Notre histoire</h2>
         <p>
-            Réduire le gaspillage textile et proposer une solution simple de revente entre élèves.
+            Ce projet a été créé par une équipe d’élèves motivés afin de réduire le gaspillage textile.  
+            L’idée est née dans le lycée et évolue progressivement pour devenir une vraie plateforme de revente.
         </p>
     </div>
+</section>
 
+<!-- ARTICLES -->
+<section class="section" id="articles">
     <div class="card">
-        <h3>Contact</h3>
-        <p>
-            📧 kenzo.jirahoua@icloud.com
-        </p>
+        <h2>🛍️ Articles</h2>
+        <div class="empty">
+            Aucun article pour le moment.<br>
+            Les vêtements seront bientôt disponibles ici.
+        </div>
     </div>
-
-</div>
-
-<!-- MESSAGE VIDE -->
-<div class="empty">
-    <h2>🛍️ Aucun article pour le moment</h2>
-    <p>Les vêtements seront bientôt ajoutés ici</p>
-</div>
+</section>
 
 <!-- FOOTER -->
 <footer>
