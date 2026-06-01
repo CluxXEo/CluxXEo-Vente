@@ -6,51 +6,87 @@
 <title>CluxXEo Vente</title>
 
 <style>
-body{
+*{
     margin:0;
+    padding:0;
+    box-sizing:border-box;
     font-family:Arial, sans-serif;
-    background:#f4f4f4;
 }
 
-header{
-    background:#1f2937;
+body{
+    background:#0f172a;
     color:white;
-    text-align:center;
-    padding:50px 20px;
 }
 
-section{
+/* HEADER */
+header{
+    background:linear-gradient(135deg,#1e293b,#0f172a);
+    padding:80px 20px;
+    text-align:center;
+}
+
+header h1{
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+header p{
+    color:#cbd5e1;
+    font-size:18px;
+}
+
+/* SECTION */
+.container{
     max-width:900px;
     margin:auto;
     padding:40px 20px;
 }
 
-h2{
-    color:#1f2937;
-}
-
-.presentation{
-    background:white;
-    border-radius:10px;
+/* CARD */
+.card{
+    background:#1e293b;
     padding:25px;
-    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.4);
+    margin-bottom:20px;
 }
 
+.card h2{
+    color:#38bdf8;
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#e2e8f0;
+    line-height:1.6;
+}
+
+/* CONTACT */
 .contact{
-    margin-top:20px;
+    background:#0ea5e9;
+    color:white;
     padding:15px;
-    background:#eef2ff;
-    border-radius:8px;
+    border-radius:12px;
+    margin-top:15px;
+    font-weight:bold;
 }
 
+/* FOOTER */
 footer{
-    background:#1f2937;
-    color:white;
     text-align:center;
     padding:20px;
-    margin-top:40px;
+    color:#94a3b8;
+    font-size:14px;
+    margin-top:30px;
+}
+
+/* EFFET */
+.card:hover{
+    transform:translateY(-5px);
+    transition:0.3s;
 }
 </style>
+
 </head>
 
 <body>
@@ -60,43 +96,35 @@ footer{
     <p>Donner une seconde vie aux vêtements</p>
 </header>
 
-<section>
-    <div class="presentation">
+<div class="container">
 
+    <div class="card">
         <h2>À propos de nous</h2>
-
         <p>
-            Bonjour !
+            Nous nous appelons Kenzo et Sasha. Nous avons créé ce site afin de revendre des vêtements d'occasion que nous avons récoltés.
+            Notre objectif est de proposer des vêtements à petit prix pour aider les personnes qui en ont besoin.
         </p>
-
-        <p>
-            Nous nous appelons Kenzo et Sasha. Nous avons créé ce site
-            afin de revendre des vêtements d'occasion que nous avons
-            récoltés. Notre objectif est de proposer des vêtements à
-            petit prix pour aider les personnes qui en ont besoin tout
-            en donnant une seconde vie à des vêtements encore en bon état.
-        </p>
-
-        <h2>Notre objectif</h2>
-
-        <p>
-            Réduire le gaspillage textile, encourager la réutilisation
-            des vêtements et permettre à chacun de trouver des articles
-            abordables.
-        </p>
-
-        <div class="contact">
-            <h2>Contact</h2>
-            <p>
-                📧 Email : kenzo.jirahoua@icloud.com
-            </p>
-        </div>
-
     </div>
-</section>
+
+    <div class="card">
+        <h2>Notre objectif</h2>
+        <p>
+            Réduire le gaspillage textile et encourager la réutilisation des vêtements.
+            Chaque vêtement mérite une seconde vie.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>Contact</h2>
+        <p class="contact">
+            📧 kenzo.jirahoua@icloud.com
+        </p>
+    </div>
+
+</div>
 
 <footer>
-    © 2026 CluxXEo Vente - Créé par Kenzo et Sasha
+    © 2026 CluxXEo Vente
 </footer>
 
 </body>
