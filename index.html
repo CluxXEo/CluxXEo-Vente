@@ -17,146 +17,170 @@ body{
     background:#f5f6f7;
 }
 
-/* HEADER */
+/* MENU */
 header{
     background:white;
-    padding:12px 20px;
+    padding:15px 30px;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    border-bottom:1px solid #e5e5e5;
+    box-shadow:0 2px 10px rgba(0,0,0,0.08);
+    position:sticky;
+    top:0;
 }
 
-.logo img{
-    height:45px;
+.logo{
+    font-size:24px;
+    font-weight:bold;
+    color:#00c06b;
 }
 
 nav a{
-    margin-left:15px;
     text-decoration:none;
     color:#333;
-    font-weight:500;
+    margin-left:20px;
+    font-weight:bold;
 }
 
 nav a:hover{
     color:#00c06b;
 }
 
-/* HERO */
+/* ACCUEIL */
 .hero{
     text-align:center;
-    padding:70px 20px;
+    padding:100px 20px;
     background:linear-gradient(135deg,#00c06b,#00a85a);
     color:white;
 }
 
 .hero h1{
-    font-size:34px;
-    margin-bottom:10px;
-}
-
-/* SECTIONS */
-.section{
-    max-width:900px;
-    margin:30px auto;
-    padding:0 20px;
-}
-
-.card{
-    background:white;
-    padding:20px;
-    border-radius:12px;
+    font-size:48px;
     margin-bottom:15px;
-    box-shadow:0 4px 12px rgba(0,0,0,0.06);
 }
 
-.card h2{
-    color:#00c06b;
-    margin-bottom:10px;
+.hero p{
+    font-size:20px;
 }
 
-/* ARTICLES */
-.empty{
-    text-align:center;
-    padding:50px 20px;
-    color:#666;
+/* HISTOIRE */
+.story{
+    max-width:1000px;
+    margin:50px auto;
+    padding:20px;
+}
+
+.story-card{
     background:white;
-    border-radius:12px;
-    box-shadow:0 4px 12px rgba(0,0,0,0.06);
+    padding:35px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
 }
 
-/* FOOTER */
+.story-card h2{
+    color:#00c06b;
+    margin-bottom:20px;
+}
+
+.story-card p{
+    line-height:1.8;
+    color:#444;
+}
+
+/* BOUTON */
+.btn{
+    display:inline-block;
+    margin-top:25px;
+    background:#00c06b;
+    color:white;
+    padding:12px 25px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.btn:hover{
+    background:#00a85a;
+}
+
+/* SECTION VÊTEMENTS */
+.articles{
+    max-width:1000px;
+    margin:50px auto;
+    padding:20px;
+}
+
+.articles-card{
+    background:white;
+    padding:40px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+
 footer{
     text-align:center;
-    padding:20px;
-    color:#888;
-    font-size:14px;
-    margin-top:30px;
-}
-
-/* SMOOTH NAV */
-html{
-    scroll-behavior:smooth;
+    padding:25px;
+    color:#777;
 }
 </style>
-</head>
 
+</head>
 <body>
 
-<!-- HEADER -->
 <header>
-    <div class="logo">
-        <img src="logo.png" alt="CluxXEo Vente">
-    </div>
+    <div class="logo">CluxXEo Vente</div>
 
     <nav>
-        <a href="#accueil">Accueil</a>
-        <a href="#infos">Infos</a>
-        <a href="#histoire">Histoire</a>
-        <a href="#articles">Articles</a>
+        <a href="#histoire">Notre histoire</a>
+        <a href="#vetements">Vêtements</a>
     </nav>
 </header>
 
-<!-- HERO / ACCUEIL -->
-<section class="hero" id="accueil">
-    <h1>CluxXEo Vente</h1>
-    <p>Donner une seconde vie aux vêtements du lycée</p>
+<section class="hero">
+    <h1>Bienvenue sur CluxXEo Vente</h1>
+    <p>Donner une seconde vie aux vêtements et lutter contre le gaspillage.</p>
 </section>
 
-<!-- INFOS -->
-<section class="section" id="infos">
-    <div class="card">
-        <h2>📌 Infos du projet</h2>
+<section class="story" id="histoire">
+    <div class="story-card">
+        <h2>Notre histoire</h2>
+
         <p>
-            CluxXEo Vente est un projet de revente de vêtements d’occasion récupérés au sein du lycée.  
-            L’objectif est de proposer des vêtements à petits prix et accessibles à tous.
+            CluxXEo Vente est un projet créé par Kenzo et Sasha.
+        </p>
+
+        <br>
+
+        <p>
+            Notre objectif est simple : récupérer des vêtements encore en bon état,
+            leur donner une seconde vie et les proposer à des prix accessibles.
+        </p>
+
+        <br>
+
+        <p>
+            Nous souhaitons réduire le gaspillage textile tout en permettant à chacun
+            de trouver des vêtements de qualité à petit prix.
+        </p>
+
+        <a href="#vetements" class="btn">
+            Voir les vêtements
+        </a>
+    </div>
+</section>
+
+<section class="articles" id="vetements">
+    <div class="articles-card">
+        <h2>🛍️ Nos vêtements</h2>
+
+        <p>
+            Aucun vêtement n'est disponible pour le moment.
+            Les futurs articles apparaîtront ici.
         </p>
     </div>
 </section>
 
-<!-- HISTOIRE -->
-<section class="section" id="histoire">
-    <div class="card">
-        <h2>📖 Notre histoire</h2>
-        <p>
-            Ce projet a été créé par une équipe d’élèves motivés afin de réduire le gaspillage textile.  
-            L’idée est née dans le lycée et évolue progressivement pour devenir une vraie plateforme de revente.
-        </p>
-    </div>
-</section>
-
-<!-- ARTICLES -->
-<section class="section" id="articles">
-    <div class="card">
-        <h2>🛍️ Articles</h2>
-        <div class="empty">
-            Aucun article pour le moment.<br>
-            Les vêtements seront bientôt disponibles ici.
-        </div>
-    </div>
-</section>
-
-<!-- FOOTER -->
 <footer>
     © 2026 CluxXEo Vente
 </footer>
