@@ -1,189 +1,937 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CluxXEo Vente</title>
-
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ReVêt — Seconde Main Solidaire | La Réunion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
-}
+  :root {
+    --cream: #F5F0E8;
+    --warm-white: #FAFAF7;
+    --sage: #7A9E7E;
+    --sage-light: #B5CEB8;
+    --sage-dark: #4E7352;
+    --terracotta: #C4845A;
+    --bark: #3D3530;
+    --bark-light: #6B5B52;
+    --stone: #9E9189;
+    --stone-light: #D4CEC8;
+    --linen: #EDE8DF;
+  }
 
-body{
-    background:#f5f6f7;
-}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* MENU */
-header{
-    background:white;
-    padding:15px 30px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    box-shadow:0 2px 10px rgba(0,0,0,0.08);
-    position:sticky;
-    top:0;
-}
+  html { scroll-behavior: smooth; }
 
-.logo{
-    font-size:24px;
-    font-weight:bold;
-    color:#00c06b;
-}
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--warm-white);
+    color: var(--bark);
+    font-weight: 300;
+    overflow-x: hidden;
+  }
 
-nav a{
-    text-decoration:none;
-    color:#333;
-    margin-left:20px;
-    font-weight:bold;
-}
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(250,250,247,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--stone-light);
+    transition: padding .3s;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 600;
+    color: var(--bark); text-decoration: none; letter-spacing: -.02em;
+  }
+  .nav-logo span { color: var(--sage-dark); font-style: italic; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--bark-light); font-size: .9rem;
+    font-weight: 400; letter-spacing: .04em; text-transform: uppercase;
+    position: relative; padding-bottom: 2px; transition: color .2s;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 0; height: 1px; background: var(--sage-dark); transition: width .3s;
+  }
+  .nav-links a:hover { color: var(--sage-dark); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cart {
+    display: flex; align-items: center; gap: .5rem;
+    background: var(--bark); color: var(--cream);
+    padding: .55rem 1.2rem; border-radius: 50px;
+    font-size: .85rem; text-decoration: none; font-weight: 500;
+    transition: background .2s;
+  }
+  .nav-cart:hover { background: var(--sage-dark); }
 
-nav a:hover{
-    color:#00c06b;
-}
+  /* ─── PAGES ─── */
+  .page { display: none; min-height: 100vh; padding-top: 72px; }
+  .page.active { display: block; }
 
-/* ACCUEIL */
-.hero{
-    text-align:center;
-    padding:100px 20px;
-    background:linear-gradient(135deg,#00c06b,#00a85a);
-    color:white;
-}
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 92vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    position: relative; overflow: hidden;
+  }
+  .hero-text {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 6rem 4rem 4rem 4rem; position: relative; z-index: 2;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: var(--sage-light); color: var(--sage-dark);
+    padding: .4rem 1rem; border-radius: 50px; font-size: .8rem;
+    font-weight: 500; letter-spacing: .06em; text-transform: uppercase;
+    margin-bottom: 2rem; width: fit-content;
+  }
+  .hero-tag::before { content: '🌿'; font-size: .9rem; }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem); line-height: 1.1;
+    font-weight: 600; letter-spacing: -.03em; margin-bottom: 1.5rem;
+  }
+  .hero h1 em { color: var(--sage-dark); font-style: italic; }
+  .hero-sub {
+    font-size: 1.05rem; color: var(--bark-light); line-height: 1.7;
+    max-width: 460px; margin-bottom: 2.5rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--bark); color: var(--cream);
+    padding: .85rem 2rem; border-radius: 50px; text-decoration: none;
+    font-weight: 500; font-size: .95rem; transition: all .25s;
+    border: 2px solid var(--bark);
+  }
+  .btn-primary:hover { background: var(--sage-dark); border-color: var(--sage-dark); }
+  .btn-secondary {
+    background: transparent; color: var(--bark);
+    padding: .85rem 2rem; border-radius: 50px; text-decoration: none;
+    font-weight: 500; font-size: .95rem; border: 2px solid var(--stone-light);
+    transition: all .25s;
+  }
+  .btn-secondary:hover { border-color: var(--bark); }
+  .hero-visual {
+    background: var(--linen); position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-visual::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 60% 40%, rgba(122,158,126,.25) 0%, transparent 65%);
+  }
+  .hero-img-placeholder {
+    width: 100%; height: 100%; min-height: 60vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 1rem; color: var(--stone); font-size: .9rem;
+  }
+  .hero-img-placeholder .big-icon {
+    font-size: 5rem; opacity: .4;
+  }
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 3rem; padding-top: 2.5rem;
+    border-top: 1px solid var(--stone-light);
+  }
+  .stat { display: flex; flex-direction: column; }
+  .stat-num {
+    font-family: 'Playfair Display', serif; font-size: 2rem;
+    font-weight: 600; color: var(--bark);
+  }
+  .stat-label { font-size: .8rem; color: var(--stone); text-transform: uppercase; letter-spacing: .05em; }
 
-.hero h1{
-    font-size:48px;
-    margin-bottom:15px;
-}
+  /* ─── SECTIONS ─── */
+  section { padding: 6rem 4rem; }
+  .section-label {
+    font-size: .75rem; text-transform: uppercase; letter-spacing: .12em;
+    color: var(--sage-dark); font-weight: 500; margin-bottom: 1rem;
+    display: flex; align-items: center; gap: .8rem;
+  }
+  .section-label::before { content: ''; display: block; width: 30px; height: 1px; background: var(--sage-dark); }
+  h2 {
+    font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 600; letter-spacing: -.02em; line-height: 1.15; margin-bottom: 1.5rem;
+  }
 
-.hero p{
-    font-size:20px;
-}
+  /* ─── HISTOIRE ─── */
+  .histoire { background: var(--linen); }
+  .histoire-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+  }
+  .histoire-content p {
+    color: var(--bark-light); line-height: 1.8; margin-bottom: 1.2rem; font-size: 1rem;
+  }
+  .histoire-content p strong { color: var(--bark); font-weight: 500; }
+  .valeurs {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem;
+  }
+  .valeur {
+    background: var(--warm-white); padding: 1.5rem; border-radius: 12px;
+    border: 1px solid var(--stone-light);
+  }
+  .valeur-icon { font-size: 1.8rem; margin-bottom: .8rem; }
+  .valeur h3 { font-size: .95rem; font-weight: 500; margin-bottom: .4rem; }
+  .valeur p { font-size: .85rem; color: var(--stone); line-height: 1.5; }
+  .histoire-quote {
+    background: var(--sage); color: white;
+    padding: 3rem; border-radius: 20px; position: relative; overflow: hidden;
+  }
+  .histoire-quote::before {
+    content: '"'; font-family: 'Playfair Display', serif;
+    font-size: 8rem; line-height: 1; opacity: .2;
+    position: absolute; top: -1rem; left: 1.5rem; color: white;
+  }
+  .histoire-quote blockquote {
+    font-family: 'Playfair Display', serif; font-size: 1.4rem;
+    font-style: italic; line-height: 1.6; position: relative; z-index: 1;
+  }
+  .histoire-quote cite {
+    display: block; margin-top: 1.5rem; font-size: .85rem;
+    opacity: .8; font-style: normal; font-family: 'DM Sans', sans-serif;
+  }
 
-/* HISTOIRE */
-.story{
-    max-width:1000px;
-    margin:50px auto;
-    padding:20px;
-}
+  /* ─── CONTACT ─── */
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;
+  }
+  .social-links { display: flex; flex-direction: column; gap: .8rem; margin: 2rem 0; }
+  .social-link {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem 1.5rem; border-radius: 12px;
+    border: 1px solid var(--stone-light); text-decoration: none;
+    color: var(--bark); font-weight: 400; transition: all .2s;
+  }
+  .social-link:hover { background: var(--linen); border-color: var(--sage-light); }
+  .social-icon { font-size: 1.4rem; }
+  .social-info { display: flex; flex-direction: column; }
+  .social-name { font-weight: 500; font-size: .95rem; }
+  .social-handle { font-size: .8rem; color: var(--stone); }
+  .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+  .form-group { display: flex; flex-direction: column; gap: .5rem; }
+  .form-group label { font-size: .85rem; font-weight: 500; color: var(--bark-light); }
+  .form-group input, .form-group textarea, .form-group select {
+    padding: .9rem 1.2rem; border: 1.5px solid var(--stone-light);
+    border-radius: 10px; font-family: 'DM Sans', sans-serif;
+    font-size: .95rem; color: var(--bark); background: var(--warm-white);
+    transition: border-color .2s; outline: none; resize: none;
+  }
+  .form-group input:focus, .form-group textarea:focus {
+    border-color: var(--sage-dark);
+  }
+  .form-group textarea { min-height: 130px; }
+  .btn-submit {
+    background: var(--bark); color: var(--cream);
+    padding: 1rem 2rem; border: none; border-radius: 50px;
+    font-family: 'DM Sans', sans-serif; font-size: .95rem;
+    font-weight: 500; cursor: pointer; transition: background .2s;
+    width: fit-content;
+  }
+  .btn-submit:hover { background: var(--sage-dark); }
+  .adresse-box {
+    background: var(--linen); padding: 1.5rem 2rem; border-radius: 12px;
+    margin-top: 2rem; border-left: 3px solid var(--sage);
+  }
+  .adresse-box p { font-size: .9rem; color: var(--bark-light); line-height: 1.7; }
+  .adresse-box strong { color: var(--bark); }
 
-.story-card{
-    background:white;
-    padding:35px;
-    border-radius:15px;
-    box-shadow:0 4px 15px rgba(0,0,0,0.08);
-}
+  /* ─── BOUTIQUE ─── */
+  .boutique-header {
+    padding: 4rem 4rem 2rem;
+    display: flex; justify-content: space-between; align-items: flex-end;
+  }
+  .filters {
+    display: flex; gap: 1rem; padding: 0 4rem 2rem; flex-wrap: wrap;
+  }
+  .filter-btn {
+    padding: .5rem 1.4rem; border-radius: 50px; font-size: .85rem;
+    border: 1.5px solid var(--stone-light); background: transparent;
+    cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all .2s;
+    color: var(--bark-light);
+  }
+  .filter-btn.active, .filter-btn:hover {
+    background: var(--bark); color: var(--cream); border-color: var(--bark);
+  }
+  .products-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 2rem; padding: 1rem 4rem 5rem;
+  }
+  .product-card {
+    background: var(--warm-white); border-radius: 16px;
+    overflow: hidden; border: 1px solid var(--stone-light);
+    transition: transform .25s, box-shadow .25s; cursor: pointer;
+  }
+  .product-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(61,53,48,.1); }
+  .product-img {
+    aspect-ratio: 3/4; background: var(--linen);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem; color: var(--stone-light); position: relative; overflow: hidden;
+  }
+  .product-img::after {
+    content: attr(data-emoji);
+    font-size: 4rem; position: absolute;
+    opacity: .35;
+  }
+  .product-badge {
+    position: absolute; top: 1rem; left: 1rem;
+    background: var(--sage); color: white; padding: .3rem .7rem;
+    border-radius: 50px; font-size: .7rem; font-weight: 500; letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  .product-info { padding: 1.2rem 1.4rem 1.4rem; }
+  .product-name { font-weight: 500; margin-bottom: .3rem; font-size: .95rem; }
+  .product-meta {
+    display: flex; gap: .5rem; margin-bottom: 1rem; flex-wrap: wrap;
+  }
+  .tag {
+    background: var(--linen); color: var(--bark-light);
+    padding: .2rem .7rem; border-radius: 50px; font-size: .75rem;
+  }
+  .product-footer {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .product-price {
+    font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600;
+  }
+  .btn-reserve {
+    background: var(--bark); color: var(--cream);
+    border: none; padding: .55rem 1.1rem; border-radius: 50px;
+    font-size: .8rem; font-weight: 500; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; transition: background .2s;
+  }
+  .btn-reserve:hover { background: var(--sage-dark); }
+  .product-card.sold { opacity: .55; pointer-events: none; }
+  .product-card.sold .product-badge { background: var(--stone); }
 
-.story-card h2{
-    color:#00c06b;
-    margin-bottom:20px;
-}
+  /* ─── INFOS PRATIQUES ─── */
+  .infos-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+    padding: 4rem;
+  }
+  .info-card {
+    background: var(--linen); border-radius: 20px; padding: 2.5rem;
+    border: 1px solid var(--stone-light);
+  }
+  .info-card h3 {
+    font-family: 'Playfair Display', serif; font-size: 1.5rem;
+    margin-bottom: 1.5rem; display: flex; align-items: center; gap: .8rem;
+  }
+  .info-card h3 .icon { font-size: 1.4rem; }
+  .info-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+  .info-list li {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1rem 1.2rem; background: var(--warm-white);
+    border-radius: 10px; font-size: .92rem; line-height: 1.5;
+  }
+  .info-list li .li-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: .1rem; }
+  .info-list li strong { display: block; font-weight: 500; color: var(--bark); margin-bottom: .2rem; }
+  .info-list li span { color: var(--bark-light); }
+  .eco-banner {
+    margin: 0 4rem 4rem;
+    background: linear-gradient(135deg, var(--sage-dark), var(--sage));
+    border-radius: 20px; padding: 3rem 4rem;
+    display: flex; align-items: center; gap: 3rem; color: white;
+  }
+  .eco-banner .eco-icon { font-size: 4rem; flex-shrink: 0; }
+  .eco-banner h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: .8rem; }
+  .eco-banner p { opacity: .88; line-height: 1.7; font-size: .95rem; }
+  .faq { padding: 0 4rem 5rem; }
+  .faq h2 { margin-bottom: 2rem; }
+  .faq-item {
+    border-bottom: 1px solid var(--stone-light); padding: 1.5rem 0;
+  }
+  .faq-item summary {
+    font-weight: 500; cursor: pointer; font-size: .97rem;
+    list-style: none; display: flex; justify-content: space-between; align-items: center;
+  }
+  .faq-item summary::after { content: '+'; font-size: 1.4rem; color: var(--stone); }
+  .faq-item[open] summary::after { content: '−'; }
+  .faq-item p {
+    margin-top: 1rem; color: var(--bark-light); line-height: 1.7; font-size: .92rem;
+  }
 
-.story-card p{
-    line-height:1.8;
-    color:#444;
-}
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--bark); color: var(--stone-light);
+    padding: 3rem 4rem; display: flex;
+    justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  footer .logo {
+    font-family: 'Playfair Display', serif; font-size: 1.3rem;
+    color: var(--cream);
+  }
+  footer p { font-size: .82rem; opacity: .6; }
 
-/* BOUTON */
-.btn{
-    display:inline-block;
-    margin-top:25px;
-    background:#00c06b;
-    color:white;
-    padding:12px 25px;
-    border-radius:8px;
-    text-decoration:none;
-    font-weight:bold;
-}
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-tag, .hero h1, .hero-sub, .hero-actions, .hero-stats {
+    animation: fadeUp .7s ease both;
+  }
+  .hero h1 { animation-delay: .1s; }
+  .hero-sub { animation-delay: .2s; }
+  .hero-actions { animation-delay: .3s; }
+  .hero-stats { animation-delay: .4s; }
 
-.btn:hover{
-    background:#00a85a;
-}
+  /* ─── PANIER MODAL ─── */
+  .cart-modal {
+    display: none; position: fixed; inset: 0; z-index: 200;
+    background: rgba(61,53,48,.4); backdrop-filter: blur(4px);
+  }
+  .cart-modal.open { display: flex; justify-content: flex-end; }
+  .cart-panel {
+    width: 380px; background: var(--warm-white);
+    height: 100%; padding: 2rem; overflow-y: auto;
+    display: flex; flex-direction: column; gap: 1.5rem;
+  }
+  .cart-header { display: flex; justify-content: space-between; align-items: center; }
+  .cart-header h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; }
+  .cart-close {
+    background: none; border: none; font-size: 1.5rem;
+    cursor: pointer; color: var(--bark); padding: .2rem .5rem;
+  }
+  .cart-item {
+    display: flex; gap: 1rem; align-items: center;
+    padding: 1rem; background: var(--linen); border-radius: 10px;
+  }
+  .cart-item-img {
+    width: 60px; height: 75px; background: var(--stone-light);
+    border-radius: 8px; display: flex; align-items: center;
+    justify-content: center; font-size: 2rem; flex-shrink: 0;
+  }
+  .cart-item-info { flex: 1; }
+  .cart-item-name { font-weight: 500; font-size: .9rem; }
+  .cart-item-price { color: var(--sage-dark); font-weight: 500; margin-top: .2rem; }
+  .cart-remove { background: none; border: none; cursor: pointer; color: var(--stone); font-size: 1.1rem; }
+  .cart-empty { text-align: center; color: var(--stone); padding: 3rem 0; font-size: .95rem; }
+  .cart-total {
+    margin-top: auto; padding-top: 1.5rem; border-top: 1px solid var(--stone-light);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .cart-total strong { font-family: 'Playfair Display', serif; font-size: 1.4rem; }
+  .btn-checkout {
+    width: 100%; background: var(--sage-dark); color: white;
+    border: none; padding: 1rem; border-radius: 50px;
+    font-family: 'DM Sans', sans-serif; font-weight: 500;
+    font-size: .95rem; cursor: pointer; margin-top: 1rem;
+    transition: background .2s;
+  }
+  .btn-checkout:hover { background: var(--bark); }
+  .cart-count {
+    background: var(--sage); color: white; border-radius: 50%;
+    width: 18px; height: 18px; font-size: .7rem; font-weight: 700;
+    display: inline-flex; align-items: center; justify-content: center;
+    margin-left: .3rem;
+  }
 
-/* SECTION VÊTEMENTS */
-.articles{
-    max-width:1000px;
-    margin:50px auto;
-    padding:20px;
-}
+  /* ─── TOAST ─── */
+  .toast {
+    position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(80px);
+    background: var(--bark); color: white; padding: .8rem 1.8rem;
+    border-radius: 50px; font-size: .88rem; z-index: 300;
+    transition: transform .3s ease; pointer-events: none;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
 
-.articles-card{
-    background:white;
-    padding:40px;
-    border-radius:15px;
-    text-align:center;
-    box-shadow:0 4px 15px rgba(0,0,0,0.08);
-}
-
-footer{
-    text-align:center;
-    padding:25px;
-    color:#777;
-}
+  /* Responsive */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    section, .boutique-header, .products-grid, .filters, .infos-grid, .eco-banner, .faq { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .hero-text { padding: 4rem 1.5rem 3rem; }
+    .histoire-grid, .contact-grid, .infos-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .eco-banner { flex-direction: column; text-align: center; }
+    .valeurs { grid-template-columns: 1fr; }
+    .cart-panel { width: 100%; }
+  }
 </style>
-
 </head>
 <body>
 
-<header>
-    <div class="logo">CluxXEo Vente</div>
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo" onclick="showPage('accueil')">Re<span>Vêt</span></a>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('accueil')">Accueil</a></li>
+    <li><a href="#" onclick="showPage('boutique')">Boutique</a></li>
+    <li><a href="#" onclick="showPage('infos')">Infos pratiques</a></li>
+  </ul>
+  <a href="#" class="nav-cart" onclick="openCart(); return false;">
+    🛍 Panier <span class="cart-count" id="cart-count">0</span>
+  </a>
+</nav>
 
-    <nav>
-        <a href="#histoire">Notre histoire</a>
-        <a href="#vetements">Vêtements</a>
-    </nav>
-</header>
+<!-- ══════════════ PAGE ACCUEIL ══════════════ -->
+<div class="page active" id="page-accueil">
 
-<section class="hero">
-    <h1>Bienvenue sur CluxXEo Vente</h1>
-    <p>Donner une seconde vie aux vêtements et lutter contre le gaspillage.</p>
-</section>
-
-<section class="story" id="histoire">
-    <div class="story-card">
-        <h2>Notre histoire</h2>
-
-        <p>
-            CluxXEo Vente est un projet créé par Kenzo et Sasha.
-        </p>
-
-        <br>
-
-        <p>
-            Notre objectif est simple : récupérer des vêtements encore en bon état,
-            leur donner une seconde vie et les proposer à des prix accessibles.
-        </p>
-
-        <br>
-
-        <p>
-            Nous souhaitons réduire le gaspillage textile tout en permettant à chacun
-            de trouver des vêtements de qualité à petit prix.
-        </p>
-
-        <a href="#vetements" class="btn">
-            Voir les vêtements
-        </a>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-text">
+      <div class="hero-tag">Lycée · La Réunion</div>
+      <h1>La mode de seconde main,<br/><em>à portée de tous.</em></h1>
+      <p class="hero-sub">
+        ReVêt est une boutique solidaire et écologique née au cœur d'un lycée réunionnais. 
+        Des vêtements propres, en bon état, à des prix accessibles pour tous.
+      </p>
+      <div class="hero-actions">
+        <a href="#" class="btn-primary" onclick="showPage('boutique')">Découvrir la boutique</a>
+        <a href="#notre-histoire" class="btn-secondary">Notre histoire →</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num">100%</span>
+          <span class="stat-label">Solidaire</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">0€</span>
+          <span class="stat-label">Frais de port</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">♻</span>
+          <span class="stat-label">Économie circulaire</span>
+        </div>
+      </div>
     </div>
-</section>
-
-<section class="articles" id="vetements">
-    <div class="articles-card">
-        <h2>🛍️ Nos vêtements</h2>
-
-        <p>
-            Aucun vêtement n'est disponible pour le moment.
-            Les futurs articles apparaîtront ici.
-        </p>
+    <div class="hero-visual">
+      <div class="hero-img-placeholder">
+        <span class="big-icon">👕</span>
+        <p>Vos photos de vêtements ici</p>
+      </div>
     </div>
-</section>
+  </div>
 
+  <!-- NOTRE HISTOIRE -->
+  <section class="histoire" id="notre-histoire">
+    <div class="histoire-grid">
+      <div class="histoire-content">
+        <div class="section-label">Origine du projet</div>
+        <h2>Une idée née<br/>dans les couloirs du lycée</h2>
+        <p>
+          Tout a commencé par un constat simple : <strong>des armoires qui débordent, 
+          des budgets limités, et une île qui mérite mieux que le gaspillage.</strong> 
+          À La Réunion, la solidarité n'est pas un concept — c'est une façon de vivre.
+        </p>
+        <p>
+          Un groupe d'élèves passionnés a décidé d'agir. Récupérer des vêtements 
+          délaissés, les nettoyer soigneusement, les remettre en valeur, et les proposer 
+          à des prix accessibles à tous les lycéens. <strong>Un geste simple. Un impact réel.</strong>
+        </p>
+        <p>
+          ReVêt, c'est plus qu'une boutique : c'est un acte de foi envers notre génération, 
+          notre île et notre planète. Chaque vêtement vendu, c'est <strong>un déchet de moins, 
+          un sourire de plus</strong>, et quelques euros économisés pour quelqu'un qui en a besoin.
+        </p>
+        <div class="valeurs">
+          <div class="valeur">
+            <div class="valeur-icon">🌿</div>
+            <h3>Écologie</h3>
+            <p>Réduire les déchets textiles à La Réunion, une pièce à la fois.</p>
+          </div>
+          <div class="valeur">
+            <div class="valeur-icon">🤝</div>
+            <h3>Solidarité</h3>
+            <p>Permettre à chacun de s'habiller avec dignité, sans se ruiner.</p>
+          </div>
+          <div class="valeur">
+            <div class="valeur-icon">♻️</div>
+            <h3>Économie circulaire</h3>
+            <p>Donner une seconde vie aux vêtements plutôt que de les jeter.</p>
+          </div>
+          <div class="valeur">
+            <div class="valeur-icon">🏝️</div>
+            <h3>Fierté locale</h3>
+            <p>Un projet 100% réunionnais, ancré dans les valeurs de notre île.</p>
+          </div>
+        </div>
+      </div>
+      <div class="histoire-quote">
+        <blockquote>
+          "Nous n'héritons pas de la Terre de nos ancêtres — nous l'empruntons à nos enfants. 
+          Commençons par nos vêtements."
+        </blockquote>
+        <cite>— L'équipe ReVêt, Lycée de La Réunion</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-label">Nous retrouver</div>
+    <h2>Restez connectés</h2>
+    <div class="contact-grid">
+      <div>
+        <p style="color:var(--bark-light);line-height:1.7;margin-bottom:1rem">
+          Suivez nos nouveautés sur les réseaux, ou écrivez-nous directement. 
+          On répond vite ! 🌴
+        </p>
+        <div class="social-links">
+          <a href="#" class="social-link">
+            <span class="social-icon">📸</span>
+            <div class="social-info">
+              <span class="social-name">Instagram</span>
+              <span class="social-handle">@revet.reunion</span>
+            </div>
+          </a>
+          <a href="#" class="social-link">
+            <span class="social-icon">🎵</span>
+            <div class="social-info">
+              <span class="social-name">TikTok</span>
+              <span class="social-handle">@revet.reunion</span>
+            </div>
+          </a>
+          <a href="#" class="social-link">
+            <span class="social-icon">💬</span>
+            <div class="social-info">
+              <span class="social-name">Facebook</span>
+              <span class="social-handle">ReVêt Réunion</span>
+            </div>
+          </a>
+        </div>
+        <div class="adresse-box">
+          <p>
+            <strong>📍 Retrait & dons :</strong><br/>
+            Directement au lycée, sur rendez-vous.<br/>
+            Du lundi au vendredi, de 8h à 17h.<br/>
+            <strong>Zéro frais de port. Zéro gaspillage.</strong>
+          </p>
+        </div>
+      </div>
+      <div>
+        <form class="contact-form" onsubmit="handleContact(event)">
+          <div class="form-group">
+            <label>Votre prénom</label>
+            <input type="text" placeholder="Ex : Marie" required/>
+          </div>
+          <div class="form-group">
+            <label>Votre e-mail</label>
+            <input type="email" placeholder="exemple@email.com" required/>
+          </div>
+          <div class="form-group">
+            <label>Sujet</label>
+            <select>
+              <option>Question sur un article</option>
+              <option>Don de vêtements</option>
+              <option>Collaboration / Partenariat</option>
+              <option>Autre</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea placeholder="Dites-nous tout…"></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Envoyer le message →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════ PAGE BOUTIQUE ══════════════ -->
+<div class="page" id="page-boutique">
+  <div class="boutique-header">
+    <div>
+      <div class="section-label">Catalogue</div>
+      <h2>Nos vêtements</h2>
+    </div>
+    <p style="color:var(--stone);font-size:.9rem"><span id="product-count">8</span> articles disponibles</p>
+  </div>
+
+  <div class="filters" id="filter-bar">
+    <button class="filter-btn active" onclick="filterProducts('tous', this)">Tous</button>
+    <button class="filter-btn" onclick="filterProducts('hauts', this)">Hauts</button>
+    <button class="filter-btn" onclick="filterProducts('bas', this)">Bas</button>
+    <button class="filter-btn" onclick="filterProducts('vestes', this)">Vestes</button>
+    <button class="filter-btn" onclick="filterProducts('robes', this)">Robes</button>
+    <button class="filter-btn" onclick="filterProducts('xs', this)">XS/S</button>
+    <button class="filter-btn" onclick="filterProducts('m', this)">M</button>
+    <button class="filter-btn" onclick="filterProducts('l', this)">L/XL</button>
+  </div>
+
+  <div class="products-grid" id="products-grid"></div>
+</div>
+
+<!-- ══════════════ PAGE INFOS PRATIQUES ══════════════ -->
+<div class="page" id="page-infos">
+  <div style="padding:4rem 4rem 2rem">
+    <div class="section-label">Informations</div>
+    <h2>Tout ce qu'il faut savoir</h2>
+  </div>
+
+  <div class="infos-grid">
+    <div class="info-card">
+      <h3><span class="icon">💳</span> Moyens de paiement</h3>
+      <ul class="info-list">
+        <li>
+          <span class="li-icon">💵</span>
+          <div>
+            <strong>Espèces</strong>
+            <span>Paiement en main propre au lycée, lors du retrait de votre article. Nous préférons l'appoint.</span>
+          </div>
+        </li>
+        <li>
+          <span class="li-icon">📱</span>
+          <div>
+            <strong>Lydia</strong>
+            <span>Virement instantané via l'application Lydia. Simple, rapide et sans frais.</span>
+          </div>
+        </li>
+        <li>
+          <span class="li-icon">💳</span>
+          <div>
+            <strong>Carte bancaire</strong>
+            <span>Paiement par CB possible dans certains cas. Contactez-nous pour confirmer.</span>
+          </div>
+        </li>
+        <li>
+          <span class="li-icon">🎁</span>
+          <div>
+            <strong>Don libre</strong>
+            <span>Certains articles sont proposés à prix libre ou gratuits selon votre situation.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="info-card">
+      <h3><span class="icon">🤝</span> Retrait & livraison</h3>
+      <ul class="info-list">
+        <li>
+          <span class="li-icon">🏫</span>
+          <div>
+            <strong>Retrait au lycée</strong>
+            <span>Récupérez vos articles directement au lycée, sur rendez-vous convenu par message. Aucun frais.</span>
+          </div>
+        </li>
+        <li>
+          <span class="li-icon">📅</span>
+          <div>
+            <strong>Créneaux disponibles</strong>
+            <span>Lundi — Vendredi, de 8h00 à 17h00, hors jours fériés et vacances scolaires.</span>
+          </div>
+        </li>
+        <li>
+          <span class="li-icon">🌿</span>
+          <div>
+            <strong>Pourquoi pas de livraison ?</strong>
+            <span>Pour rester éco-responsables et éviter les emballages. Le retrait en main propre, c'est notre engagement.</span>
+          </div>
+        </li>
+        <li>
+          <span class="li-icon">📦</span>
+          <div>
+            <strong>Réservation</strong>
+            <span>Réservez en ligne et votre article vous est mis de côté pendant 48h maximum.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="eco-banner">
+    <div class="eco-icon">🌱</div>
+    <div>
+      <h3>Notre engagement écologique</h3>
+      <p>
+        Chaque vêtement vendu chez ReVêt, c'est en moyenne <strong>2 kg de CO₂ économisés</strong> 
+        par rapport à l'achat d'un vêtement neuf. Nous nettoyons tous nos articles à basse température, 
+        sans produits chimiques agressifs, pour protéger à la fois vos vêtements et notre île magnifique. 
+        La Réunion mérite qu'on en prenne soin.
+      </p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <div class="section-label">Vos questions</div>
+    <h2>FAQ</h2>
+    <details class="faq-item">
+      <summary>Comment donner des vêtements à ReVêt ?</summary>
+      <p>Il suffit de nous contacter via le formulaire de la page d'accueil ou de nous écrire sur Instagram. Nous organisons des collectes régulières au lycée. Vos vêtements doivent être en bon état général — ils seront nettoyés avant mise en vente.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Les vêtements sont-ils vraiment propres ?</summary>
+      <p>Absolument. Chaque article est inspecté, lavé et repassé avant d'être mis en vente. L'état est indiqué sur chaque fiche produit (Très bon état / Bon état / Correct).</p>
+    </details>
+    <details class="faq-item">
+      <summary>Puis-je essayer les vêtements avant d'acheter ?</summary>
+      <p>Oui ! Lors du retrait au lycée, vous avez la possibilité d'essayer l'article. S'il ne vous convient pas, vous n'êtes pas obligé de le prendre.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Que se passe-t-il si je réserve mais ne viens pas ?</summary>
+      <p>La réservation est valable 48h. Passé ce délai, l'article est remis en vente. Pas de pénalité, mais prévenez-nous si vous avez un empêchement !</p>
+    </details>
+    <details class="faq-item">
+      <summary>Les bénéfices servent à quoi ?</summary>
+      <p>Les fonds récoltés servent à financer les frais de nettoyage, les fournitures scolaires pour des élèves dans le besoin, et les actions solidaires du lycée. C'est un projet sans but lucratif.</p>
+    </details>
+  </div>
+</div>
+
+<!-- FOOTER -->
 <footer>
-    © 2026 CluxXEo Vente
+  <div class="logo">Re<span style="font-style:italic;color:var(--sage-light)">Vêt</span></div>
+  <p>Boutique solidaire & écologique · Lycée de La Réunion 🌺</p>
+  <p>© 2025 ReVêt — Tous droits réservés</p>
 </footer>
 
+<!-- PANIER -->
+<div class="cart-modal" id="cart-modal" onclick="closeCartOutside(event)">
+  <div class="cart-panel">
+    <div class="cart-header">
+      <h3>Mon panier</h3>
+      <button class="cart-close" onclick="closeCart()">✕</button>
+    </div>
+    <div id="cart-items"></div>
+    <div class="cart-total" id="cart-total" style="display:none">
+      <span>Total</span>
+      <strong id="cart-total-price">0 €</strong>
+    </div>
+    <button class="btn-checkout" id="checkout-btn" style="display:none" onclick="checkout()">
+      Réserver mes articles →
+    </button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ─── DATA PRODUITS ───
+const products = [
+  { id:1, name:'T-shirt fleuri', cat:'hauts', size:'M', taille:'m', price:3, emoji:'👕', etat:'Très bon état', color:'#B5CEB8', available:true },
+  { id:2, name:'Jean slim', cat:'bas', size:'S', taille:'xs', price:5, emoji:'👖', etat:'Bon état', color:'#7A9E7E', available:true },
+  { id:3, name:'Veste en jean', cat:'vestes', size:'L', taille:'l', price:7, emoji:'🧥', etat:'Très bon état', color:'#9E9189', available:true },
+  { id:4, name:'Robe d\'été', cat:'robes', size:'XS', taille:'xs', price:4, emoji:'👗', etat:'Très bon état', color:'#C4845A', available:true },
+  { id:5, name:'Pull chaud', cat:'hauts', size:'L', taille:'l', price:4, emoji:'🧶', etat:'Bon état', color:'#4E7352', available:true },
+  { id:6, name:'Short sport', cat:'bas', size:'M', taille:'m', price:2, emoji:'🩳', etat:'Correct', color:'#6B5B52', available:false },
+  { id:7, name:'Chemise rayée', cat:'hauts', size:'XL', taille:'l', price:4, emoji:'👔', etat:'Très bon état', color:'#7A9E7E', available:true },
+  { id:8, name:'Veste légère', cat:'vestes', size:'S', taille:'xs', price:6, emoji:'🧣', etat:'Bon état', color:'#B5CEB8', available:true },
+];
+
+let cart = [];
+let activeFilter = 'tous';
+
+function renderProducts(filter = 'tous') {
+  const grid = document.getElementById('products-grid');
+  const sizeFilters = ['xs','m','l'];
+  const filtered = products.filter(p => {
+    if (filter === 'tous') return true;
+    if (sizeFilters.includes(filter)) return p.taille === filter;
+    return p.cat === filter;
+  });
+  document.getElementById('product-count').textContent = filtered.filter(p=>p.available).length;
+  grid.innerHTML = filtered.map(p => `
+    <div class="product-card ${p.available ? '' : 'sold'}" data-id="${p.id}">
+      <div class="product-img" style="background:${p.color}22" data-emoji="${p.emoji}">
+        <span class="product-badge">${p.available ? p.etat : 'Vendu'}</span>
+        <span style="font-size:4rem;opacity:.35">${p.emoji}</span>
+      </div>
+      <div class="product-info">
+        <div class="product-name">${p.name}</div>
+        <div class="product-meta">
+          <span class="tag">${p.size}</span>
+          <span class="tag">${p.cat.charAt(0).toUpperCase()+p.cat.slice(1)}</span>
+        </div>
+        <div class="product-footer">
+          <span class="product-price">${p.price} €</span>
+          ${p.available ? `<button class="btn-reserve" onclick="addToCart(${p.id})">Réserver</button>` : '<span style="font-size:.8rem;color:var(--stone)">Indisponible</span>'}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterProducts(filter, btn) {
+  activeFilter = filter;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderProducts(filter);
+}
+
+// ─── CART ───
+function addToCart(id) {
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  const existing = cart.find(x => x.id === id);
+  if (existing) { showToast('Déjà dans le panier !'); return; }
+  cart.push({...p});
+  updateCartUI();
+  showToast(`${p.emoji} ${p.name} ajouté au panier !`);
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(x => x.id !== id);
+  updateCartUI();
+  renderCartItems();
+}
+
+function updateCartUI() {
+  document.getElementById('cart-count').textContent = cart.length;
+  renderCartItems();
+}
+
+function renderCartItems() {
+  const container = document.getElementById('cart-items');
+  const totalEl = document.getElementById('cart-total');
+  const checkoutBtn = document.getElementById('checkout-btn');
+  if (cart.length === 0) {
+    container.innerHTML = '<div class="cart-empty">Votre panier est vide 🛍</div>';
+    totalEl.style.display = 'none';
+    checkoutBtn.style.display = 'none';
+    return;
+  }
+  const total = cart.reduce((s,x) => s + x.price, 0);
+  container.innerHTML = cart.map(p => `
+    <div class="cart-item">
+      <div class="cart-item-img">${p.emoji}</div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${p.name} — ${p.size}</div>
+        <div class="cart-item-price">${p.price} €</div>
+      </div>
+      <button class="cart-remove" onclick="removeFromCart(${p.id})">✕</button>
+    </div>
+  `).join('');
+  document.getElementById('cart-total-price').textContent = total + ' €';
+  totalEl.style.display = 'flex';
+  checkoutBtn.style.display = 'block';
+}
+
+function openCart() { document.getElementById('cart-modal').classList.add('open'); renderCartItems(); }
+function closeCart() { document.getElementById('cart-modal').classList.remove('open'); }
+function closeCartOutside(e) { if (e.target === document.getElementById('cart-modal')) closeCart(); }
+function checkout() { showToast('🎉 Réservation confirmée ! On vous contacte vite.'); cart=[]; updateCartUI(); closeCart(); }
+
+// ─── TOAST ───
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// ─── NAVIGATION ───
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+  if (name === 'boutique') renderProducts(activeFilter);
+}
+
+// ─── CONTACT FORM ───
+function handleContact(e) {
+  e.preventDefault();
+  showToast('✅ Message envoyé ! On vous répond rapidement.');
+  e.target.reset();
+}
+
+// ─── INIT ───
+renderProducts();
+</script>
 </body>
 </html>
