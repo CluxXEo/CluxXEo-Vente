@@ -895,12 +895,7 @@ function showPage(name) {
   if (name === 'boutique') renderProducts(activeFilter);
 }
 
-// ─── CONTACT FORM ───
-function handleContact(e) {
-  e.preventDefault();
-  showToast('✅ Message envoyé ! On vous répond rapidement.');
-  e.target.reset();
-}
+
 
 // ─── INIT ───
 renderProducts();
