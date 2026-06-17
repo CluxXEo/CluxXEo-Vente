@@ -1,1 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Infos Pratiques — CluxXEo Vente</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/global.css"/>
+  <link rel="stylesheet" href="css/infos.css"/>
+</head>
+<body>
 
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">CluxXEo <span>Vente</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="boutique.html">Boutique</a></li>
+    <li><a href="infos.html">Infos pratiques</a></li>
+  </ul>
+  <button class="nav-cart" onclick="openCart()">
+    🛍 Panier <span class="cart-count" id="cart-count">0</span>
+  </button>
+</nav>
+
+<!-- HEADER -->
+<div class="infos-page-header" style="padding-top: calc(4rem + 72px);">
+  <div class="section-label">Informations</div>
+  <h2>Tout ce qu'il faut savoir</h2>
+</div>
+
+<!-- GRILLE PAIEMENT / LIVRAISON -->
+<div class="infos-grid">
+
+  <!-- PAIEMENT -->
+  <div class="info-card">
+    <h3><span class="icon">💳</span> Moyens de paiement</h3>
+    <ul class="info-list">
+      <li>
+        <span class="li-icon">💵</span>
+        <div>
+          <strong>Liquide (espèces)</strong>
+          <span>Paiement en cash uniquement lors d'un retrait en main propre — devant le lycée ou à Saint-Pierre. Nous préférons l'appoint.</span>
+        </div>
+      </li>
+      <li>
+        <span class="li-icon">🅿️</span>
+        <div>
+          <strong>PayPal</strong>
+          <span>Paiement sécurisé en ligne via PayPal. Idéal si vous commandez depuis chez vous avant de récupérer votre article ou de vous le faire livrer.</span>
+        </div>
+      </li>
+      <li>
+        <span class="li-icon">🏦</span>
+        <div>
+          <strong>Virement bancaire</strong>
+          <span>Virement direct sur notre compte. Nous vous communiquons le RIB après validation de votre commande.</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- LIVRAISON -->
+  <div class="info-card">
+    <h3><span class="icon">📦</span> Retrait et livraison</h3>
+    <ul class="info-list">
+      <li>
+        <span class="li-icon">🏫</span>
+        <div>
+          <strong>Retrait devant le lycée</strong>
+          <span>Récupérez votre commande directement devant le lycée, sur rendez-vous. Rapide, gratuit, sans frais.</span>
+        </div>
+      </li>
+      <li>
+        <span class="li-icon">📍</span>
+        <div>
+          <strong>Point de rencontre — Saint-Pierre</strong>
+          <span>Un endroit dans le Sud de La Réunion peut être convenu avec vous à Saint-Pierre. On s'adapte à votre situation !</span>
+        </div>
+      </li>
+      <li>
+        <span class="li-icon">📬</span>
+        <div>
+          <strong>Livraison via La Poste</strong>
+          <span>Nous envoyons vos articles par La Poste. Les frais de port ET de douane sont intégralement pris en charge par CluxXEo Vente. Aucun frais caché.</span>
+        </div>
+      </li>
+      <li>
+        <span class="li-icon">📅</span>
+        <div>
+          <strong>Créneaux de retrait</strong>
+          <span>Lundi — Vendredi, de 8h00 à 17h00, hors jours fériés et vacances scolaires.</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- BANNIÈRE ÉCO -->
+<div class="eco-banner">
+  <div class="eco-icon">🌱</div>
+  <div>
+    <h3>Notre engagement écologique</h3>
+    <p>
+      Chaque vêtement vendu chez CluxXEo Vente, c'est en moyenne <strong>2 kg de CO₂ économisés</strong>
+      par rapport à l'achat d'un vêtement neuf. Nous nettoyons tous nos articles à basse température,
+      sans produits chimiques agressifs, pour protéger à la fois vos vêtements et notre île magnifique.
+      La Réunion mérite qu'on en prenne soin.
+    </p>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="faq">
+  <div class="section-label">Vos questions</div>
+  <h2>FAQ</h2>
+
+  <details class="faq-item">
+    <summary>Comment donner des vêtements à CluxXEo Vente ?</summary>
+    <p>Il suffit de nous contacter via le formulaire de la page d'accueil. Nous organisons des collectes régulières au lycée et à Saint-Pierre. Vos vêtements doivent être en bon état général — ils seront nettoyés avant mise en vente.</p>
+  </details>
+
+  <details class="faq-item">
+    <summary>Les vêtements sont-ils vraiment propres ?</summary>
+    <p>Absolument. Chaque article est inspecté, lavé et repassé avant d'être mis en vente. L'état est indiqué sur chaque fiche produit (Très bon état / Bon état / Correct).</p>
+  </details>
+
+  <details class="faq-item">
+    <summary>Puis-je essayer les vêtements avant d'acheter ?</summary>
+    <p>Oui ! Lors du retrait au lycée ou à Saint-Pierre, vous avez la possibilité d'essayer l'article. S'il ne vous convient pas, vous n'êtes pas obligé de le prendre.</p>
+  </details>
+
+  <details class="faq-item">
+    <summary>Que se passe-t-il si je réserve mais ne viens pas ?</summary>
+    <p>La réservation est valable 48h. Passé ce délai, l'article est remis en vente. Pas de pénalité, mais prévenez-nous si vous avez un empêchement !</p>
+  </details>
+
+  <details class="faq-item">
+    <summary>Les bénéfices, à qui vont-ils ?</summary>
+    <p>CluxXEo Vente est avant tout un projet entrepreneurial porté par des jeunes de La Réunion. Les bénéfices générés reviennent directement aux créateurs du projet — c'est notre façon de valoriser notre travail, notre temps et notre investissement personnel. On récupère, on nettoie, on revend : c'est un vrai petit business, né d'une vraie initiative.</p>
+  </details>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo">CluxXEo <span style="font-style:italic;color:var(--sage-light)">Vente</span></div>
+  <p>Vente de vêtements seconde main · La Réunion 🌺</p>
+  <p>© 2025 CluxXEo Vente — Tous droits réservés</p>
+</footer>
+
+<!-- PANIER -->
+<div class="cart-modal" id="cart-modal" onclick="closeCartOutside(event)">
+  <div class="cart-panel">
+    <div class="cart-header">
+      <h3>Mon panier</h3>
+      <button class="cart-close" onclick="closeCart()">✕</button>
+    </div>
+    <div id="cart-items"></div>
+    <div class="cart-total" id="cart-total" style="display:none">
+      <span>Total</span>
+      <strong id="cart-total-price">0 €</strong>
+    </div>
+    <button class="btn-checkout" id="checkout-btn" style="display:none" onclick="checkout()">
+      Réserver mes articles →
+    </button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- SCRIPTS -->
+<script src="js/nav.js"></script>
+
+</body>
+</html>
