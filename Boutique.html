@@ -1,1 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Boutique — CluxXEo Vente</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/global.css"/>
+  <link rel="stylesheet" href="css/boutique.css"/>
+</head>
+<body>
 
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">CluxXEo <span>Vente</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="boutique.html">Boutique</a></li>
+    <li><a href="infos.html">Infos pratiques</a></li>
+  </ul>
+  <button class="nav-cart" onclick="openCart()">
+    🛍 Panier <span class="cart-count" id="cart-count">0</span>
+  </button>
+</nav>
+
+<!-- HEADER BOUTIQUE -->
+<div class="boutique-header" style="padding-top: calc(4rem + 72px);">
+  <div>
+    <div class="section-label">Catalogue</div>
+    <h2>Nos vêtements</h2>
+  </div>
+  <p><span id="product-count">0</span> articles disponibles</p>
+</div>
+
+<!-- FILTRES -->
+<div class="filters" id="filter-bar">
+  <button class="filter-btn active" onclick="filterProducts('tous', this)">Tous</button>
+  <button class="filter-btn" onclick="filterProducts('hauts', this)">Hauts</button>
+  <button class="filter-btn" onclick="filterProducts('bas', this)">Bas</button>
+  <button class="filter-btn" onclick="filterProducts('vestes', this)">Vestes</button>
+  <button class="filter-btn" onclick="filterProducts('robes', this)">Robes</button>
+  <button class="filter-btn" onclick="filterProducts('xs', this)">XS/S</button>
+  <button class="filter-btn" onclick="filterProducts('m', this)">M</button>
+  <button class="filter-btn" onclick="filterProducts('l', this)">L/XL</button>
+</div>
+
+<!-- GRILLE PRODUITS -->
+<div class="products-grid" id="products-grid"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo">CluxXEo <span style="font-style:italic;color:var(--sage-light)">Vente</span></div>
+  <p>Vente de vêtements seconde main · La Réunion 🌺</p>
+  <p>© 2025 CluxXEo Vente — Tous droits réservés</p>
+</footer>
+
+<!-- PANIER -->
+<div class="cart-modal" id="cart-modal" onclick="closeCartOutside(event)">
+  <div class="cart-panel">
+    <div class="cart-header">
+      <h3>Mon panier</h3>
+      <button class="cart-close" onclick="closeCart()">✕</button>
+    </div>
+    <div id="cart-items"></div>
+    <div class="cart-total" id="cart-total" style="display:none">
+      <span>Total</span>
+      <strong id="cart-total-price">0 €</strong>
+    </div>
+    <button class="btn-checkout" id="checkout-btn" style="display:none" onclick="checkout()">
+      Réserver mes articles →
+    </button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- SCRIPTS -->
+<script src="js/nav.js"></script>
+<script src="js/boutique.js"></script>
+
+</body>
+</html>
