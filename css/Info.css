@@ -1,1 +1,141 @@
+/* ============================================
+   CLUEXXEO VENTE — infos.css
+   Paiement, Livraison, Bannière éco, FAQ
+   ============================================ */
 
+/* ─── HEADER INFOS ─── */
+.infos-page-header {
+  padding: 4rem 4rem 2rem;
+}
+
+/* ─── GRILLE INFOS ─── */
+.infos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  padding: 2rem 4rem 4rem;
+}
+
+/* ─── CARTES INFO ─── */
+.info-card {
+  background: var(--linen);
+  border-radius: 20px;
+  padding: 2.5rem;
+  border: 1px solid var(--stone-light);
+}
+
+.info-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+}
+
+.info-card h3 .icon { font-size: 1.4rem; }
+
+/* ─── LISTE INFOS ─── */
+.info-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.info-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  background: var(--warm-white);
+  border-radius: 10px;
+  font-size: .92rem;
+  line-height: 1.5;
+}
+
+.info-list li .li-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  margin-top: .1rem;
+}
+
+.info-list li strong {
+  display: block;
+  font-weight: 500;
+  color: var(--bark);
+  margin-bottom: .2rem;
+}
+
+.info-list li span { color: var(--bark-light); }
+
+/* ─── BANNIÈRE ÉCO ─── */
+.eco-banner {
+  margin: 0 4rem 4rem;
+  background: linear-gradient(135deg, var(--sage-dark), var(--sage));
+  border-radius: 20px;
+  padding: 3rem 4rem;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  color: white;
+}
+
+.eco-banner .eco-icon { font-size: 4rem; flex-shrink: 0; }
+
+.eco-banner h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  margin-bottom: .8rem;
+}
+
+.eco-banner p {
+  opacity: .88;
+  line-height: 1.7;
+  font-size: .95rem;
+}
+
+/* ─── FAQ ─── */
+.faq {
+  padding: 0 4rem 5rem;
+}
+
+.faq h2 { margin-bottom: 2rem; }
+
+.faq-item {
+  border-bottom: 1px solid var(--stone-light);
+  padding: 1.5rem 0;
+}
+
+.faq-item summary {
+  font-weight: 500;
+  cursor: pointer;
+  font-size: .97rem;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-item summary::after {
+  content: '+';
+  font-size: 1.4rem;
+  color: var(--stone);
+}
+
+.faq-item[open] summary::after { content: '−'; }
+
+.faq-item p {
+  margin-top: 1rem;
+  color: var(--bark-light);
+  line-height: 1.7;
+  font-size: .92rem;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .infos-page-header { padding: 3rem 1.5rem 1rem; }
+  .infos-grid { grid-template-columns: 1fr; padding: 1.5rem; gap: 2rem; }
+  .eco-banner { margin: 0 1.5rem 3rem; padding: 2rem; flex-direction: column; text-align: center; gap: 1.5rem; }
+  .faq { padding: 0 1.5rem 4rem; }
+}
