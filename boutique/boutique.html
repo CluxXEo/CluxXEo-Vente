@@ -6,18 +6,18 @@
   <title>Boutique — CluxXEo Vente</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="css/global.css"/>
-  <link rel="stylesheet" href="css/boutique.css"/>
+  <link rel="stylesheet" href="../css/global.css"/>
+  <link rel="stylesheet" href="../css/boutique.css"/>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <a href="index.html" class="nav-logo">CluxXEo <span>Vente</span></a>
+  <a href="../index.html" class="nav-logo">CluxXEo <span>Vente</span></a>
   <ul class="nav-links">
-    <li><a href="index.html">Accueil</a></li>
-    <li><a href="boutique.html">Boutique</a></li>
-    <li><a href="infos.html">Infos pratiques</a></li>
+    <li><a href="../index.html">Accueil</a></li>
+    <li><a href="../boutique/">Boutique</a></li>
+    <li><a href="../infos/">Infos pratiques</a></li>
   </ul>
   <button class="nav-cart" onclick="openCart()">
     🛍 Panier <span class="cart-count" id="cart-count">0</span>
@@ -36,10 +36,9 @@
 <!-- FILTRES -->
 <div class="filters" id="filter-bar">
   <button class="filter-btn active" onclick="filterProducts('tous', this)">Tous</button>
-  <button class="filter-btn" onclick="filterProducts('hauts', this)">Hauts</button>
+  <button class="filter-btn" onclick="filterProducts('tshirt', this)">T-shirts</button>
+  <button class="filter-btn" onclick="filterProducts('sweat', this)">Sweats</button>
   <button class="filter-btn" onclick="filterProducts('bas', this)">Bas</button>
-  <button class="filter-btn" onclick="filterProducts('vestes', this)">Vestes</button>
-  <button class="filter-btn" onclick="filterProducts('robes', this)">Robes</button>
   <button class="filter-btn" onclick="filterProducts('xs', this)">XS/S</button>
   <button class="filter-btn" onclick="filterProducts('m', this)">M</button>
   <button class="filter-btn" onclick="filterProducts('l', this)">L/XL</button>
@@ -77,8 +76,81 @@
 <div class="toast" id="toast"></div>
 
 <!-- SCRIPTS -->
-<script src="js/nav.js"></script>
-<script src="js/boutique.js"></script>
+<!-- index.js chargé en premier : il contient tous les articles -->
+<script src="index.js"></script>
+<!-- nav.js : panier, toast, navigation -->
+<script src="../js/nav.js"></script>
+<script>
+  // ─── AFFICHAGE DES PRODUITS ───
+  let activeFilter = 'tous';
+
+  function renderProducts(filter) {
+    const grid = document.getElementById('products-grid');
+    const countEl = document.getElementById('product-count');
+    const sizeFilters = ['xs', 'm', 'l'];
+
+    // Récupère les articles depuis index.js
+    let articles = getTousLesArticles();
+
+    // Applique le filtre
+    if (filter !== 'tous') {
+      if (sizeFilters.includes(filter)) {
+        articles = articles.filter(a => a.taille === filter);
+      } else {
+        articles = articles.filter(a => a.cat === filter);
+      }
+    }
+
+    if (countEl) countEl.textContent = articles.length;
+
+    // Boutique vide
+    if (articles.length === 0) {
+      grid.innerHTML = `
+        <div class="boutique-vide">
+          <div class="empty-icon">🧺</div>
+          <p>La boutique arrive bientôt !</p>
+          <p>Nous préparons notre première collection. Revenez vite 🌿</p>
+        </div>`;
+      return;
+    }
+
+    // Affichage des cartes
+    grid.innerHTML = articles.map(a => `
+      <div class="product-card">
+        <div class="product-img" style="background:#EDE8DF">
+          <span class="product-badge" style="background:${etatCouleurs[a.etat] || '#7A9E7E'}">${a.etat}</span>
+          ${a.image
+            ? `<img src="${a.image}" alt="${a.name}" style="width:100%;height:100%;object-fit:cover;"/>`
+            : `<span style="font-size:4rem;opacity:.35">👕</span>`
+          }
+        </div>
+        <div class="product-info">
+          <div class="product-name">${a.name}</div>
+          <div class="product-meta">
+            <span class="tag">${a.size}</span>
+            <span class="tag">${catLabels[a.cat] || a.cat}</span>
+          </div>
+          <div class="product-footer">
+            <span class="product-price">${a.price} €</span>
+            <button class="btn-reserve" onclick='addToCart(${JSON.stringify(a)})'>Réserver</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function filterProducts(filter, btn) {
+    activeFilter = filter;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderProducts(filter);
+  }
+
+  // Lancement au chargement
+  document.addEventListener('DOMContentLoaded', () => {
+    renderProducts('tous');
+  });
+</script>
 
 </body>
 </html>
