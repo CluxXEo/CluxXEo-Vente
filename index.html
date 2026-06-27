@@ -137,18 +137,18 @@
       </div>
     </div>
     <div>
-      <form class="contact-form" onsubmit="handleContact(event)">
+      <form class="contact-form" action="https://formspree.io/f/mnjkvqyr" method="POST">
         <div class="form-group">
           <label>Votre prénom</label>
-          <input type="text" placeholder="Ex : Marie" required/>
+          <input type="text" name="prénom" placeholder="Ex : Marie" required/>
         </div>
         <div class="form-group">
           <label>Votre e-mail</label>
-          <input type="email" placeholder="exemple@email.com" required/>
+          <input type="email" name="email" placeholder="exemple@email.com" required/>
         </div>
         <div class="form-group">
           <label>Sujet</label>
-          <select>
+          <select name="sujet">
             <option>Question sur un article</option>
             <option>Don de vêtements</option>
             <option>Collaboration / Partenariat</option>
@@ -157,7 +157,7 @@
         </div>
         <div class="form-group">
           <label>Message</label>
-          <textarea placeholder="Dites-nous tout..."></textarea>
+          <textarea name="message" placeholder="Dites-nous tout..."></textarea>
         </div>
         <button type="submit" class="btn-submit">Envoyer le message</button>
       </form>
@@ -195,13 +195,6 @@
 
 <!-- SCRIPTS -->
 <script src="js/nav.js"></script>
-<script>
-  function handleContact(e) {
-    e.preventDefault();
-    showToast('Message envoyé ! On vous répond rapidement.');
-    e.target.reset();
-  }
-</script>
 
 </body>
 </html>
