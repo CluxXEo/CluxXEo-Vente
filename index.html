@@ -148,11 +148,11 @@
         </div>
         <div class="form-group">
           <label>Sujet</label>
-          <select name="sujet">
-            <option>Question sur un article</option>
-            <option>Don de vêtements</option>
-            <option>Collaboration / Partenariat</option>
-            <option>Autre</option>
+          <select name="_subject" onchange="document.getElementById('sujet-hidden').value = this.value">
+            <option value="Question sur un article">Question sur un article</option>
+            <option value="Don de vêtements">Don de vêtements</option>
+            <option value="Collaboration / Partenariat">Collaboration / Partenariat</option>
+            <option value="Autre">Autre</option>
           </select>
         </div>
         <div class="form-group">
