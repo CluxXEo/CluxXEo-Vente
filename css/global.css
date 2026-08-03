@@ -372,3 +372,7 @@ footer p {
   .cart-panel { width: 100%; }
   footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
 }
+.nav-logo img {
+  height: 45px;
+  display: block;
+}
