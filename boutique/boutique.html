@@ -34,14 +34,33 @@
 </div>
 
 <!-- FILTRES -->
-<div class="filters" id="filter-bar">
-  <button class="filter-btn active" onclick="filterProducts('tous', this)">Tous</button>
-  <button class="filter-btn" onclick="filterProducts('tshirt', this)">T-shirts</button>
-  <button class="filter-btn" onclick="filterProducts('sweat', this)">Sweats</button>
-  <button class="filter-btn" onclick="filterProducts('bas', this)">Bas</button>
-  <button class="filter-btn" onclick="filterProducts('xs', this)">XS/S</button>
-  <button class="filter-btn" onclick="filterProducts('m', this)">M</button>
-  <button class="filter-btn" onclick="filterProducts('l', this)">L/XL</button>
+<div class="filter-group">
+  <div class="filter-group-label">Genre</div>
+  <div class="filters" id="filter-genre">
+    <button class="filter-btn active" onclick="setFilter('genre','tous', this)">Tous</button>
+    <button class="filter-btn" onclick="setFilter('genre','homme', this)">Homme</button>
+    <button class="filter-btn" onclick="setFilter('genre','femme', this)">Femme</button>
+    <button class="filter-btn" onclick="setFilter('genre','enfant', this)">Enfant</button>
+    <button class="filter-btn" onclick="setFilter('genre','bebe', this)">Bébé</button>
+  </div>
+</div>
+
+<div class="filter-group">
+  <div class="filter-group-label">Taille</div>
+  <div class="filters" id="filter-taille">
+    <button class="filter-btn active" onclick="setFilter('taille','tous', this)">Toutes</button>
+    <!-- Rempli dynamiquement selon le genre sélectionné -->
+  </div>
+</div>
+
+<div class="filter-group">
+  <div class="filter-group-label">Type</div>
+  <div class="filters" id="filter-type">
+    <button class="filter-btn active" onclick="setFilter('cat','tous', this)">Tous</button>
+    <button class="filter-btn" onclick="setFilter('cat','tshirt', this)">T-shirts</button>
+    <button class="filter-btn" onclick="setFilter('cat','sweat', this)">Pull/Sweat</button>
+    <button class="filter-btn" onclick="setFilter('cat','bas', this)">Bas</button>
+  </div>
 </div>
 
 <!-- GRILLE PRODUITS -->
@@ -54,51 +73,71 @@
   <p>© 2025 CluxXEo Vente — Tous droits réservés</p>
 </footer>
 
-<!-- PANIER -->
-<div class="cart-modal" id="cart-modal" onclick="closeCartOutside(event)">
-  <div class="cart-panel">
-    <div class="cart-header">
-      <h3>Mon panier</h3>
-      <button class="cart-close" onclick="closeCart()">✕</button>
-    </div>
-    <div id="cart-items"></div>
-    <div class="cart-total" id="cart-total" style="display:none">
-      <span>Total</span>
-      <strong id="cart-total-price">0 €</strong>
-    </div>
-    <button class="btn-checkout" id="checkout-btn" style="display:none" onclick="checkout()">
-      Réserver mes articles →
-    </button>
-  </div>
-</div>
-
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
 <!-- SCRIPTS -->
 <!-- index.js chargé en premier : il contient tous les articles -->
 <script src="index.js"></script>
-<!-- nav.js : panier, toast, navigation -->
+<!-- nav.js : toast, navigation -->
 <script src="../js/nav.js"></script>
 <script>
-  // ─── AFFICHAGE DES PRODUITS ───
-  let activeFilter = 'tous';
+  // ─── FILTRES ACTIFS ───
+  const activeFilters = { genre: 'tous', taille: 'tous', cat: 'tous' };
 
-  function renderProducts(filter) {
+  // ─── MISE À JOUR DES BOUTONS TAILLE SELON LE GENRE ───
+  function updateTailleFilters() {
+    const container = document.getElementById('filter-taille');
+    const genre = activeFilters.genre;
+
+    // Reset taille si on change de genre
+    activeFilters.taille = 'tous';
+
+    if (genre === 'tous') {
+      container.innerHTML = `<button class="filter-btn active" onclick="setFilter('taille','tous', this)">Toutes</button>`;
+      return;
+    }
+
+    const tailles = taillesParGenre[genre] || [];
+    let html = `<button class="filter-btn active" onclick="setFilter('taille','tous', this)">Toutes</button>`;
+    tailles.forEach(t => {
+      html += `<button class="filter-btn" onclick="setFilter('taille','${t}', this)">${tailleLabels[t]}</button>`;
+    });
+    container.innerHTML = html;
+  }
+
+  // ─── DÉFINIR UN FILTRE ───
+  function setFilter(type, value, btn) {
+    activeFilters[type] = value;
+
+    // Met à jour l'état visuel des boutons du même groupe
+    const groupId = type === 'genre' ? 'filter-genre' : type === 'taille' ? 'filter-taille' : 'filter-type';
+    document.querySelectorAll(`#${groupId} .filter-btn`).forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    // Si on change le genre, on régénère les boutons de taille
+    if (type === 'genre') {
+      updateTailleFilters();
+    }
+
+    renderProducts();
+  }
+
+  // ─── AFFICHAGE DES PRODUITS ───
+  function renderProducts() {
     const grid = document.getElementById('products-grid');
     const countEl = document.getElementById('product-count');
-    const sizeFilters = ['xs', 'm', 'l'];
 
-    // Récupère les articles depuis index.js
     let articles = getTousLesArticles();
 
-    // Applique le filtre
-    if (filter !== 'tous') {
-      if (sizeFilters.includes(filter)) {
-        articles = articles.filter(a => a.taille === filter);
-      } else {
-        articles = articles.filter(a => a.cat === filter);
-      }
+    if (activeFilters.genre !== 'tous') {
+      articles = articles.filter(a => a.genre === activeFilters.genre);
+    }
+    if (activeFilters.taille !== 'tous') {
+      articles = articles.filter(a => a.taille === activeFilters.taille);
+    }
+    if (activeFilters.cat !== 'tous') {
+      articles = articles.filter(a => a.cat === activeFilters.cat);
     }
 
     if (countEl) countEl.textContent = articles.length;
@@ -108,8 +147,8 @@
       grid.innerHTML = `
         <div class="boutique-vide">
           <div class="empty-icon">🧺</div>
-          <p>La boutique arrive bientôt !</p>
-          <p>Nous préparons notre première collection. Revenez vite 🌿</p>
+          <p>Aucun article ne correspond à ces filtres</p>
+          <p>Essaie d'élargir ta recherche 🌿</p>
         </div>`;
       return;
     }
@@ -127,30 +166,26 @@
         <div class="product-info">
           <div class="product-name">${a.name}</div>
           <div class="product-meta">
-            <span class="tag">${a.size}</span>
+            <span class="tag">${genreLabels[a.genre] || a.genre}</span>
+            <span class="tag">${tailleLabels[a.taille] || a.size}</span>
             <span class="tag">${catLabels[a.cat] || a.cat}</span>
           </div>
           <div class="product-footer">
             <span class="product-price">${a.price} €</span>
-            <button class="btn-reserve" onclick='addToCart(${JSON.stringify(a)})'>Réserver</button>
+            <button class="btn-reserve" onclick="window.location.href='${a.stripeLink}'">Réserver</button>
           </div>
         </div>
       </div>
     `).join('');
   }
 
-  function filterProducts(filter, btn) {
-    activeFilter = filter;
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    renderProducts(filter);
-  }
-
   // Lancement au chargement
   document.addEventListener('DOMContentLoaded', () => {
-    renderProducts('tous');
+    renderProducts();
   });
 </script>
 
+</body>
+</html>
 </body>
 </html>
